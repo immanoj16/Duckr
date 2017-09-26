@@ -17,9 +17,9 @@
   "author": "Manoj Kumar <mmaharana14@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ReactjsProgram/Redux-Immutable/issues"
+    "url": "https://github.com/immanoj16/duckr/issues"
   },
-  "homepage": "https://github.com/ReactjsProgram/Redux-Immutable#readme",
+  "homepage": "https://github.com/immanoj16/duckr#readme",
   "dependencies": {
     "firebase": "^3.2.0",
     "immutable": "^3.8.1",
