@@ -1,11 +1,12 @@
 import React from 'react'
+import { color } from './styles.css'
 
-class Main extends React.Component {
-  render() {
+class MainContainer extends React.Component {
+  render () {
     return (
-      <p>Hello World!</p>
-    );
+      <p>{'Hello World!'}</p>
+    )
   }
 }
 
-export default Main
+export default MainContainer
