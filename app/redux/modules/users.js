@@ -5,7 +5,7 @@ const FETCHING_USER_FAILURE = 'FETCHING_USER_FAILURE'
 const FETCHING_USER_SUCCESS = 'FETCHING_USER_SUCCESS'
 
 
-function authUser (uid) {
+export function authUser (uid) {
   return {
       type: AUTH_USER,
       uid,
@@ -18,20 +18,20 @@ function unauthUsers () {
   }
 }
 
-function fetchingUser () {
+export function fetchingUser () {
   return {
       type: FETCHING_USER,
   }
 }
 
-function fetchingUserFailure (error) {
+export function fetchingUserFailure (error) {
   return {
       type: FETCHING_USER_FAILURE,
       error: 'Error fetching user.',
   }
 }
 
-function fetchingUserSuccess (uid, user, timestamp) {
+export function fetchingUserSuccess (uid, user, timestamp) {
   return {
       type: FETCHING_USER_SUCCESS,
       uid,
