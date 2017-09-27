@@ -34,4 +34,8 @@ const Navigation = ({isAuthed}) => {
   )
 }
 
+Navigation.propTypes = ActionLinks.propTypes = NavLinks.propTypes = {
+  isAuthed: PropTypes.bool.isRequired,
+}
+
 export default Navigation

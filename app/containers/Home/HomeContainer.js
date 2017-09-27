@@ -10,4 +10,4 @@ class HomeContainer extends React.Component {
   }
 }
 
-export default HomeContainer;
+export default HomeContainer
