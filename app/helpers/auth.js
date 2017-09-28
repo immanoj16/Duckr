@@ -14,3 +14,7 @@ export function checkIfAuthed (store) {
   // ignore firbase.
   return store.getState().isAuthed
 }
+
+export function logout () {
+  console.log('Logged out!');
+}
