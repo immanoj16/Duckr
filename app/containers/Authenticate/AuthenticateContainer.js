@@ -13,12 +13,12 @@ class AuthenticateContainer extends React.Component {
     fetchAndHandleAuthedUser: PropTypes.func.isRequired,
   }
 
-  handleAuth() {
-    this.props.fetchAndHandleAuthedUser()
+  handleAuth(e) {
+    e.preventDefault()
+    this.props.fetchAndHandleAuthedUser().then(() => this.context.router.replace('feed'))
   }
 
   render () {
-    console.log('Is Fetching', this.props.isFetching);
     return (
       <Authenticate
         isFetching={this.props.isFetching}
@@ -26,6 +26,10 @@ class AuthenticateContainer extends React.Component {
         onAuth={this.handleAuth.bind(this)} />
     )
   }
+}
+
+AuthenticateContainer.contextTypes = {
+  router: PropTypes.object.isRequired
 }
 
 function mapStateToProps (state) {
