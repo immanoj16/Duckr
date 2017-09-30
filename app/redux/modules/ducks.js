@@ -56,7 +56,7 @@ export function duckFanout (duck) {
     const uid = getState().users.authedId
     saveDuck(duck)
       .then((duckWithId) => {
-        dispatch(addDuck(duck))
+        dispatch(addDuck(duckWithId))
         dispatch(closeModal())
         dispatch(addSingleUsersDuck(uid, duckWithId.duckId))
       })
