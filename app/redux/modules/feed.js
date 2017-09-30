@@ -1,3 +1,5 @@
+import { addListener } from 'redux/modules/listeners'
+
 const SETTING_FEED_LISTENER = 'SETTING_FEED_LISTENER'
 const SETTING_FEED_LISTENER_ERROR = 'SETTING_FEED_LISTENER_ERROR'
 const SETTING_FEED_LISTENER_SUCCESS = 'SETTING_FEED_LISTENER_SUCCESS'
@@ -38,6 +40,18 @@ function resetNewDucksAvailable () {
   }
 }
 
+export function setAndHanleFeedListener () {
+  return function (dispatch, getState) {
+    if (getState().listeners.feed === true) {
+      return
+    }
+
+    dispatch(addListener('feed'))
+    dispatch(settingFeedListener())
+
+
+  }
+}
 
 const initialState = {
     newDucksAvailable: false,
