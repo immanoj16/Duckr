@@ -5,23 +5,7 @@ import { bindActionCreators } from 'redux'
 import { Duck } from 'components'
 import * as usersLikesActions from 'redux/modules/usersLikes'
 
-
 class DuckContainer extends React.Component {
-
-  propTypes: {
-    duck: PropTypes.object.isRequired,
-    numberOfLikes: PropTypes.number,
-    isLiked: PropTypes.bool.isRequired,
-    hideLikeCount: PropTypes.bool.isRequired,
-    hideReplyBtn: PropTypes.bool.isRequired,
-    handleDeleteLike: PropTypes.func.isRequired,
-    addAndHandleLike: PropTypes.func.isRequired,
-  }
-
-  defaultProps: {
-    hideReplyBtn: false,
-    hideLikeCount: true,
-  }
 
   goToProfile (e) {
     e.stopPropagation()
@@ -41,6 +25,21 @@ class DuckContainer extends React.Component {
         {...this.props} />
     )
   }
+}
+
+DuckContainer.propTypes =  {
+  duck: PropTypes.object.isRequired,
+  numberOfLikes: PropTypes.number,
+  isLiked: PropTypes.bool.isRequired,
+  hideLikeCount: PropTypes.bool.isRequired,
+  hideReplyBtn: PropTypes.bool.isRequired,
+  handleDeleteLike: PropTypes.func.isRequired,
+  addAndHandleLike: PropTypes.func.isRequired,
+}
+
+DuckContainer.defaultProps = {
+  hideReplyBtn: false,
+  hideLikeCount: true,
 }
 
 DuckContainer.contextTypes = {
