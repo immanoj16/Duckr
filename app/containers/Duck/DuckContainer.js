@@ -18,11 +18,9 @@ class DuckContainer extends React.Component {
     addAndHandleLike: PropTypes.func.isRequired,
   }
 
-  getDefaultProps () {
-    return {
-      hideReplyBtn: false,
-      hideLikeCount: true,
-    }
+  defaultProps: {
+    hideReplyBtn: false,
+    hideLikeCount: true,
   }
 
   goToProfile (e) {
