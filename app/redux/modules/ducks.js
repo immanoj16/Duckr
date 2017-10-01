@@ -1,5 +1,4 @@
 import { saveDuck } from 'helpers/api'
-
 import { closeModal } from './modal'
 import { addSingleUsersDuck } from './usersDucks'
 
