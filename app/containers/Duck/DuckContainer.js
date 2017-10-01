@@ -3,18 +3,17 @@ import { connect } from 'react-redux'
 
 import { Duck } from 'components'
 
-const { func, object, bool, number } = PropTypes
 
 class DuckContainer extends React.Component {
 
   propTypes: {
-    duck: object.isRequired,
-    numberOfLikes: number,
-    isLiked: bool.isRequired,
-    hideLikeCount: bool.isRequired,
-    hideReplyBtn: bool.isRequired,
-    handleDeleteLike: func.isRequired,
-    addAndHandleLike: func.isRequired,
+    duck: PropTypes.object.isRequired,
+    numberOfLikes: PropTypes.number,
+    isLiked: PropTypes.bool.isRequired,
+    hideLikeCount: PropTypes.bool.isRequired,
+    hideReplyBtn: PropTypes.bool.isRequired,
+    handleDeleteLike: PropTypes.func.isRequired,
+    addAndHandleLike: PropTypes.func.isRequired,
   }
 
   getDefaultProps () {
@@ -24,11 +23,28 @@ class DuckContainer extends React.Component {
     }
   }
 
+  goToProfile (e) {
+    e.stopPropagation()
+    this.context.router.push('/' + this.props.duck.uid)
+  }
+
+  handleClick (e) {
+    e.preventDefault()
+    this.context.router.push('/duckDetail/' + this.props.duck.duckId)
+  }
+
   render () {
     return (
-      <Duck />
+      <Duck
+        goToProfile={this.goToProfile.bind(this)}
+        onClick={this.props.hideReplyBtn === true ? null : this.handleClick.bind(this)}
+        {...this.props} />
     )
   }
+}
+
+DuckContainer.contextTypes = {
+  router: PropTypes.object.isRequired
 }
 
 function mapStateToProps ({ducks, likeCount, usersLikes}, props) {
