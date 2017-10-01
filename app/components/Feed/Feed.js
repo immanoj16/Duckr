@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 
+import { DuckContainer } from 'containers'
 import { newDuckContainer, header } from './styles.css'
 import { errorMsg } from 'sharedStyles/styles.css'
 
@@ -26,7 +27,7 @@ const Feed = ({duckIds, error, isFetching, newDucksAvailable, resetNewDucksAvail
           ? <p className={header}>{'This is unfortunate.'}<br /> {'It appears there are no ducks yet 😞'}</p>
           : null}
         {duckIds.map((id) => (
-          <p>Duck Id: {id}</p>
+          <DuckContainer duckId={id} key={id} />
         ))}
         {error ? <p className={errorMsg}>{error}</p> : null}
       </div>
