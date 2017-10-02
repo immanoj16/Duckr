@@ -4,7 +4,7 @@ import {
   mainContainer, container, content, repliesContainer,
   replyTextAreaContainer, replyTextArea } from './styles.css'
 import { subHeader, darkBtn, errorMsg } from 'sharedStyles/styles.css'
-import { DuckContainer } from 'containers'
+import { DuckContainer, RepliesContainer } from 'containers'
 import { formatReply } from 'helpers/utils'
 
 function Reply ({submit}) {
@@ -44,7 +44,7 @@ const DuckDetails = ({ authedUser, duckId, isFetching, error, addAndHandleReply 
               <Reply submit={(replyText) => addAndHandleReply(duckId, formatReply(authedUser, replyText))} />
             </div>
             <div className={repliesContainer}>
-              Reply Section
+              <RepliesContainer duckId={duckId} />
             </div>
           </div>}
       {error ? <p className={errorMsg}>{error}</p> : null}
