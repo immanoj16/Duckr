@@ -21,7 +21,6 @@ function Reply ({comment}) {
 
 const Replies = ({isFetching, error, replies}) => {
   const replyIds = Object.keys(replies)
-  console.log(replyIds)
   return (
     <div>
       {error ? <h3 className={errorMsg}>{error}</h3> : null}
