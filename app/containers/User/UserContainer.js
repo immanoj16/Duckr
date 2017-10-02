@@ -3,8 +3,9 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import { User } from 'components'
-import * usersActionCreators from 'redux/modules/users'
-import * usersDucksActionCreators from 'redux/modules/usersDucks'
+import * as usersActionCreators from 'redux/modules/users'
+import * as usersDucksActionCreators from 'redux/modules/usersDucks'
+import { staleUser, staleDucks } from 'helpers/utils'
 
 class UserContainer extends React.Component {
 
@@ -50,6 +51,7 @@ function mapStateToProps ({users, usersDucks}, props) {
   const noUser = typeof user === 'undefined'
   return {
     noUser,
+    name: noUser ? '' : user.info.name,
     isFetching: users.isFetching || usersDucks.isFetching,
     error: users.error || usersDucks.error,
     duckIds: specificUsersDucks ? specificUsersDucks.duckIds : [],

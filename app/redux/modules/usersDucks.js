@@ -42,12 +42,12 @@ export function fetchAndHanleUsersDucks (uid) {
   return function (dispatch) {
     dispatch(fetchingUsersDucks(uid))
 
-    fetchUsersDucks(uid)
+    return fetchUsersDucks(uid)
       .then((ducks) => dispatch(addMultipleDucks(ducks)))
       .then(({ducks}) => dispatch(
-        fetchingUserSuccess(
+        fetchingUsersDucksSuccess(
           uid,
-          Obect.keys(ducks).sort((a,b) => ducks[b].timestamp - ducks[a].timestamp),
+          Object.keys(ducks).sort((a,b) => ducks[b].timestamp - ducks[a].timestamp),
           Date.now()
         )
       ))
