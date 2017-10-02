@@ -42,7 +42,7 @@ export function fetchAndHanleUsersDucks (uid) {
   return function (dispatch) {
     dispatch(fetchingUsersDucks(uid))
 
-    return fetchUsersDucks(uid)
+    fetchUsersDucks(uid)
       .then((ducks) => dispatch(addMultipleDucks(ducks)))
       .then(({ducks}) => dispatch(
         fetchingUsersDucksSuccess(
