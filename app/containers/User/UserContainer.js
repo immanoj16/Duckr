@@ -1,9 +1,24 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
 import { User } from 'components'
+import * usersActionCreators from 'redux/modules/users'
+import * usersDucksActionCreators from 'redux/modules/usersDucks'
 
 class UserContainer extends React.Component {
+
+  componentDidMount () {
+    const uid = this.props.routeParams.uid
+    if (this.props.noUser === true || staleUser(this.props.lastUpdatedUser)) {
+      this.props.fetchAndHandleUser(uid)
+    }
+
+    if (this.props.noUser === true || staleDucks(this.props.lastUpdatedDucks)) {
+      this.props.fetchAndHanleUsersDucks(uid)
+    }
+  }
+
   render () {
     const { noUser, name, isFetching, error, duckIds } = this.props
     return (
@@ -23,6 +38,10 @@ UserContainer.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   error: PropTypes.string.isRequired,
   duckIds: PropTypes.array.isRequired,
+  fetchAndHandleUser: PropTypes.func.isRequired,
+  fetchAndHanleUsersDucks: PropTypes.func.isRequired,
+  lastUpdatedUser: PropTypes.number.isRequired,
+  lastUpdatedDucks: PropTypes.number.isRequired,
 }
 
 function mapStateToProps ({users, usersDucks}, props) {
@@ -33,8 +52,14 @@ function mapStateToProps ({users, usersDucks}, props) {
     noUser,
     isFetching: users.isFetching || usersDucks.isFetching,
     error: users.error || usersDucks.error,
-    duckIds: specificUsersDucks ? specificUsersDucks.duckIds : []
+    duckIds: specificUsersDucks ? specificUsersDucks.duckIds : [],
+    lastUpdatedUser: user ? user.lastUpdated : 0,
+    lastUpdatedDucks: specificUsersDucks ? specificUsersDucks.lastUpdated : 0,
   }
 }
 
-export default connect(mapStateToProps)(UserContainer)
+function mapDispatchToProps (dispatch) {
+  return bindActionCreators({...usersActionCreators, ...usersDucksActionCreators}, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserContainer)
