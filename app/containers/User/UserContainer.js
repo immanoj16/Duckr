@@ -17,7 +17,7 @@ class UserContainer extends React.Component {
   }
 }
 
-userContainer.propTypes = {
+UserContainer.propTypes = {
   noUser: PropTypes.bool.isRequired,
   name: PropTypes.string.isRequired,
   isFetching: PropTypes.bool.isRequired,
