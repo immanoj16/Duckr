@@ -1,4 +1,4 @@
-import { postReply } from 'helpers/api'
+import { postReply, fetchReplies } from 'helpers/api'
 
 const ADD_REPLY = 'ADD_REPLY'
 const ADD_REPLY_ERROR = 'ADD_REPLY_ERROR'
@@ -43,11 +43,11 @@ function fetchingRepliesError (error) {
   }
 }
 
-function fetchingRepliesSuccess (replies, duckId) {
+function fetchingRepliesSuccess (duckId, replies) {
   return {
     type: FETCHING_REPLIES_SUCCESS,
-    replies,
     duckId,
+    replies,
     lastUpdated: Date.now(),
   }
 }
@@ -61,6 +61,16 @@ export function addAndHandleReply (duckId, reply) {
       dispatch(removeReply(duckId, replyWithId.replyId))
       dispatch(addReplyError(error))
     })
+  }
+}
+
+export function fetchAndHandleReplies (duckId) {
+  return function (dispatch) {
+    dispatch(fetchingReplies())
+
+    fetchReplies(duckId)
+      .then((replies) => dispatch(fetchingRepliesSuccess(duckId, replies)))
+      .catch((error) => dispatch(fetchingRepliesError(error)))
   }
 }
 
